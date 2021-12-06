@@ -1,38 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./style.css";
 
 const Topscore = () => {
+  const [score, setScore] = useState([]);
+
+  const fetchScore = () => {
+    fetch("https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/topscore.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setScore(data);
+      });
+  };
+
+  useEffect(() => {
+    fetchScore();
+    console.log(score);
+  }, []);
+
   return (
     <main className="main">
       <div className="topscore">
         <h2 className="topscore__title">Žebříček nejlepších</h2>
 
         <ul className="topscore__list">
-          <li className="topscore__item">
-            <span className="topscore__name">Jarda Vomáčka</span>
-            <span className="topscore__score">9876 bodů</span>
-          </li>
-
-          <li className="topscore__item">
-            <span className="topscore__name">Emílie Přelétavá</span>
-            <span className="topscore__score">8723 bodů</span>
-          </li>
-
-          <li className="topscore__item">
-            <span className="topscore__name">Petra Novotná</span>
-            <span className="topscore__score">7465 bodů</span>
-          </li>
-
-          <li className="topscore__item">
-            <span className="topscore__name">Alena Blonďatá</span>
-            <span className="topscore__score">7132 bodů</span>
-          </li>
-
-          <li className="topscore__item">
-            <span className="topscore__name">Karel Polívka</span>
-            <span className="topscore__score">5865 bodů</span>
-          </li>
+          {score.map((ele, idx) => (
+            <li className="topscore__item" key={idx}>
+              <span className="topscore__name">{ele.name}</span>
+              <span className="topscore__score">{ele.score}</span>
+            </li>
+          ))}
         </ul>
       </div>
     </main>

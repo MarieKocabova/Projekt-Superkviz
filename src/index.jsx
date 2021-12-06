@@ -12,19 +12,23 @@ import Topscore from "./components/Topscore";
 import Question from "./components/Question";
 import Evaluation from "./components/Evaluation";
 
-const App = () => (
-  <BrowserRouter>
-    <Menu />
-    <Routes>
-      <Route path="/" element={<Intro />} />
-      <Route path="/kvizy" element={<QuizList />} />
-      <Route path="/zebricek" element={<Topscore />} />
-      {/* tohle pak smaž */}
-      <Route path="/kviz1" element={<Question />} />
-      <Route path="/result1" element={<Evaluation />} />
-    </Routes>
-    <Footer />
-  </BrowserRouter>
-);
+const App = () => {
+
+  
+  return (
+    <BrowserRouter>
+      <Menu />
+      <Routes>
+        <Route path="/" element={<Intro />} />
+        <Route path="/kvizy" element={<QuizList />} />
+        <Route path="/zebricek" element={<Topscore />} />
+        {/* tohle pak smaž */}
+        <Route path="/kviz1" element={<Question />} />
+        <Route path="/result1" element={<Evaluation />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
+};
 
 render(<App />, document.querySelector("#app"));

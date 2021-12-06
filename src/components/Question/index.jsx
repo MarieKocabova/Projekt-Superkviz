@@ -5,26 +5,28 @@ import "./style.css";
 const Question = () => {
   const [item, setItem] = useState(null);
   const [actualId, setActualId] = useState(0);
-  const [correctId, setCorrectId] = useState(null);
-  const [chosenAns, setChosenAns] = useState(0);
+  const [correctId, setCorrectId] = useState("");
+  const [chosenAns, setChosenAns] = useState("");
 
   const fetchQuestion = () => {
-    fetch("https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/1.json")
+    fetch("https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/3.json")
       .then((response) => response.json())
       .then((data) => {
-        setItem(data);
+        setItem(data.questions);
+        setCorrectId(data.questions[actualId].correctAnswer);
       });
   };
 
   useEffect(() => {
     fetchQuestion();
-  }, []);
-  console.log(item);
+  }, [actualId]);
 
   const handleClick = (a) => {
-    setChosenAns(a);
+    setChosenAns(a.target.value);
+    setActualId(actualId + 1); // doplnit if, else na vyhodnocení..
   };
   console.log(chosenAns);
+  console.log(correctId);
 
   return (
     <main className="main">
@@ -32,17 +34,17 @@ const Question = () => {
         {item !== null || undefined ? (
           <>
             <p className="question__number">
-              Otázka {actualId + 1}/ {item.questions.length}
+              Otázka {actualId + 1}/ {item.length}
             </p>
 
-            <h2 className="question__title">{item.questions[actualId].title}</h2>
+            <h2 className="question__title">{item[actualId].title}</h2>
 
             <div className="question__content">
-              <img className="question__image" src={item.questions[actualId].image} alt={item.questions[actualId].title}></img>
+              <img className="question__image" src={item[actualId].image} alt={item[actualId].title}></img>
 
               <div className="question__answers">
-                {item.questions[actualId].answers.map((a, idx) => (
-                  <button key={idx} className="question__answer" onClick={handleClick}>
+                {item[actualId].answers.map((a, idx) => (
+                  <button className="question__answer" value={idx} key={idx} onClick={handleClick}>
                     {a}
                   </button>
                 ))}
