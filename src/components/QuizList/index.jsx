@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./style.css";
 
@@ -26,9 +27,9 @@ const QuizList = () => {
             <div className="quiz-item__content">
               <h2 className="quiz-item__title">{q.title}</h2>
               <p className="quiz-item__questions">{q.questions} otázek</p>
-              <a className="quiz-item__link" href="#">
+              <Link to={`/kvizy/${q.id}`} className="quiz-item__link">
                 Spustit kvíz
-              </a>
+              </Link>
             </div>
           </div>
         ))}

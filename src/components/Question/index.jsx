@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
 
 import "./style.css";
 
-const Question = () => {
-  const [item, setItem] = useState(null);
-  const [actualId, setActualId] = useState(0);
-  const [correctId, setCorrectId] = useState("");
-  const [chosenAns, setChosenAns] = useState("");
+const Question = ({ getSingleQuizData, item, actualId, getCorrectId, getChoice }) => {
+  const { id } = useParams();
 
   const fetchQuestion = () => {
-    fetch("https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/3.json")
+    fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${id}.json`)
       .then((response) => response.json())
       .then((data) => {
-        setItem(data.questions);
-        setCorrectId(data.questions[actualId].correctAnswer);
+        getSingleQuizData(data.questions);
+        getCorrectId(data.questions[actualId].correctAnswer);
       });
   };
 
@@ -21,12 +19,9 @@ const Question = () => {
     fetchQuestion();
   }, [actualId]);
 
-  const handleClick = (a) => {
-    setChosenAns(a.target.value);
-    setActualId(actualId + 1); // doplnit if, else na vyhodnocení..
+  const handleClick = (choice) => {
+    getChoice(choice.target.value);
   };
-  console.log(chosenAns);
-  console.log(correctId);
 
   return (
     <main className="main">

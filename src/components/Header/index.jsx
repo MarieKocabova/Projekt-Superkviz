@@ -23,10 +23,10 @@ const Header = () => {
         </NavLink>
 
         {/*  tohle pak smaž  */}
-        <NavLink className={menuClass} to="/kviz1">
+        {/* <NavLink className={menuClass} to="/kviz1">
           Otázka
-        </NavLink>
-        <NavLink className={menuClass} to="/result1">
+        </NavLink> */}
+        <NavLink className={menuClass} to="/result">
           Vyhodnocení
         </NavLink>
       </nav>
