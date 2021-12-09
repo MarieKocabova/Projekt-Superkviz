@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import "./style.css";
 
@@ -20,11 +20,18 @@ const App = () => {
 
   const getChoice = (idx) => {
     setChosenAns(idx);
-    {
-      actualId <= item.length ? setActualId(actualId + 1) : <Evaluation />;
-    }
-    console.log(item.length); // doplnit if, else na vyhodnocení..
+
+    actualId + 1 < item.length ? setActualId(actualId + 1) : resultAndReset();
   };
+
+  const resultAndReset = () => {
+    alert("došly otázky");
+
+    setCorrectId("");
+    setActualId(0);
+    setChosenAns("");
+  };
+
   console.log(chosenAns);
   console.log(correctId);
 
