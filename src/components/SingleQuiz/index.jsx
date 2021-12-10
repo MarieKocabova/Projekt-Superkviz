@@ -30,15 +30,17 @@ const SingleQuiz = () => {
     setActualId(actualId + 1);
   };
 
-  console.log(chosenAnswers);
-
+  //když nemáš načteno, vrať loading
   if (loading) {
     return <h2>Loading</h2>;
   }
+
+  //pokud jsi na poslední otázce, vrať Result
   if (actualId === questionItems.length) {
     return <Result chosenAnswers={chosenAnswers} questionItems={questionItems} />;
   }
 
+  //kdykoli jindy vrať Question
   return <Question questionItems={questionItems} actualId={actualId} getChoice={getChoice} />;
 };
 
