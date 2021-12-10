@@ -21,14 +21,6 @@ const Header = () => {
         <NavLink className={menuClass} to="/zebricek">
           Žebříček
         </NavLink>
-
-        {/*  tohle pak smaž  */}
-        {/* <NavLink className={menuClass} to="/kviz1">
-          Otázka
-        </NavLink> */}
-        <NavLink className={menuClass} to="/result">
-          Vyhodnocení
-        </NavLink>
       </nav>
     </header>
   );

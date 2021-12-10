@@ -19,22 +19,20 @@ const QuizList = () => {
   }, []);
 
   return (
-    <main className="main">
-      <div className="quiz-list">
-        {quizes.map((q) => (
-          <div className="quiz-item" key={q.id}>
-            <img className="quiz-item__image" src={q.image} alt={q.title}></img>
-            <div className="quiz-item__content">
-              <h2 className="quiz-item__title">{q.title}</h2>
-              <p className="quiz-item__questions">{q.questions} otázek</p>
-              <Link to={`/kvizy/${q.id}`} className="quiz-item__link">
-                Spustit kvíz
-              </Link>
-            </div>
+    <div className="quiz-list">
+      {quizes.map((q) => (
+        <div className="quiz-item" key={q.id}>
+          <img className="quiz-item__image" src={q.image} alt={q.title}></img>
+          <div className="quiz-item__content">
+            <h2 className="quiz-item__title">{q.title}</h2>
+            <p className="quiz-item__questions">{q.questions} otázek</p>
+            <Link to={`/kviz/${q.id}`} className="quiz-item__link">
+              Spustit kvíz
+            </Link>
           </div>
-        ))}
-      </div>
-    </main>
+        </div>
+      ))}
+    </div>
   );
 };
 

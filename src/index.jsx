@@ -6,53 +6,23 @@ import "./style.css";
 
 import Intro from "./components/Intro";
 import Footer from "./components/Footer";
-import Menu from "./components/Header";
+import Header from "./components/Header";
 import QuizList from "./components/QuizList";
+import SingleQuiz from "./components/SingleQuiz";
 import Topscore from "./components/Topscore";
-import Question from "./components/Question";
-import Evaluation from "./components/Evaluation";
 
 const App = () => {
-  const [item, setItem] = useState(null);
-  const [actualId, setActualId] = useState(0);
-  const [correctId, setCorrectId] = useState("");
-  const [chosenAns, setChosenAns] = useState("");
-
-  const getChoice = (idx) => {
-    setChosenAns(idx);
-
-    actualId + 1 < item.length ? setActualId(actualId + 1) : resultAndReset();
-  };
-
-  const resultAndReset = () => {
-    alert("došly otázky");
-
-    setCorrectId("");
-    setActualId(0);
-    setChosenAns("");
-  };
-
-  console.log(chosenAns);
-  console.log(correctId);
-
-  const getSingleQuizData = (data) => {
-    setItem(data);
-  };
-
-  const getCorrectId = (corrId) => {
-    setCorrectId(corrId);
-  };
-
   return (
     <BrowserRouter>
-      <Menu />
-      <Routes>
-        <Route path="/" element={<Intro />} />
-        <Route path="/kvizy" element={<QuizList />} />
-        <Route path="/zebricek" element={<Topscore />} />
-        <Route path="/kvizy/:id" element={<Question getSingleQuizData={getSingleQuizData} getCorrectId={getCorrectId} item={item} actualId={actualId} correctId={correctId} getChoice={getChoice} />} />
-        <Route path="/result" element={<Evaluation />} />
-      </Routes>
+      <Header />
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<Intro />} />
+          <Route path="/kvizy" element={<QuizList />} />
+          <Route path="/kviz/:id" element={<SingleQuiz />} />
+          <Route path="/zebricek" element={<Topscore />} />
+        </Routes>
+      </main>
       <Footer />
     </BrowserRouter>
   );

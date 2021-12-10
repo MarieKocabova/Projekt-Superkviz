@@ -1,57 +1,30 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import React from "react";
 
 import "./style.css";
 
-const Question = ({ getSingleQuizData, item, actualId, getCorrectId, getChoice }) => {
-  const { id } = useParams();
-
-  const fetchQuestion = () => {
-    fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${id}.json`)
-      .then((response) => response.json())
-      .then((data) => {
-        getSingleQuizData(data.questions);
-        getCorrectId(data.questions[actualId].correctAnswer);
-      });
-  };
-
-  useEffect(() => {
-    fetchQuestion();
-  }, [actualId]);
-
+const Question = ({ questionItems, actualId, getChoice }) => {
   const handleClick = (choice) => {
     getChoice(choice.target.value);
   };
 
   return (
-    <main className="main">
-      <div className="question">
-        {item !== null || undefined ? (
-          <>
-            <p className="question__number">
-              Otázka {actualId + 1}/ {item.length}
-            </p>
+    <div className="question">
+      <p className="question__number">
+        Otázka {actualId + 1}/ {questionItems.length}
+      </p>
+      <h2 className="question__title">{questionItems[actualId].title}</h2>
+      <div className="question__content">
+        <img className="question__image" src={questionItems[actualId].image} alt={questionItems[actualId].title}></img>
 
-            <h2 className="question__title">{item[actualId].title}</h2>
-
-            <div className="question__content">
-              <img className="question__image" src={item[actualId].image} alt={item[actualId].title}></img>
-
-              <div className="question__answers">
-                {item[actualId].answers.map((a, idx) => (
-                  <button className="question__answer" value={idx} key={idx} onClick={handleClick}>
-                    {a}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </>
-        ) : (
-          "loading"
-        )}
+        <div className="question__answers">
+          {questionItems[actualId].answers.map((a, idx) => (
+            <button className="question__answer" value={idx} key={idx} onClick={handleClick}>
+              {a}
+            </button>
+          ))}
+        </div>
       </div>
-    </main>
+    </div>
   );
 };
 

@@ -19,20 +19,18 @@ const Topscore = () => {
   }, []);
 
   return (
-    <main className="main">
-      <div className="topscore">
-        <h2 className="topscore__title">Žebříček nejlepších</h2>
+    <div className="topscore">
+      <h2 className="topscore__title">Žebříček nejlepších</h2>
 
-        <ul className="topscore__list">
-          {score.map((ele, idx) => (
-            <li className="topscore__item" key={idx}>
-              <span className="topscore__name">{ele.name}</span>
-              <span className="topscore__score">{ele.score}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </main>
+      <ul className="topscore__list">
+        {score.map((ele, idx) => (
+          <li className="topscore__item" key={idx}>
+            <span className="topscore__name">{ele.name}</span>
+            <span className="topscore__score">{ele.score}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
