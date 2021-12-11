@@ -4,7 +4,7 @@
   align-items: center;
   margin: 30px 0; */
   display: grid;
-  grid-template-columns: repeat(auto-fit, 30rem);
+  grid-template-columns: repeat(auto-fit, 25rem);
   justify-content: center;
   margin: 30px 0;
 }
@@ -25,7 +25,7 @@ menu {
 
 .menu__link {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 12px 30px;
   font-family: "Nunito", sans-serif;
   font-size: 18px;
   font-weight: 700;

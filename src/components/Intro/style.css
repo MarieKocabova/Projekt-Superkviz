@@ -3,10 +3,10 @@
 }
 .intro {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 30rem);
+  grid-template-columns: repeat(auto-fit, 23rem);
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
 }
 
 .intro__logo {
