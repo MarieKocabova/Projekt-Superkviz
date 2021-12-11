@@ -7,7 +7,7 @@ const QuizList = () => {
   const [quizes, setQuizes] = useState([]);
 
   const fetchQuizes = () => {
-    fetch("https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quizes.json")
+    fetch("https://raw.githubusercontent.com/MarieKocabova/superkviz-api/main/quizes.json")
       .then((response) => response.json())
       .then((data) => {
         setQuizes(data);

@@ -13,7 +13,7 @@ const SingleQuiz = () => {
   const { id } = useParams();
 
   const fetchQuestion = () => {
-    fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${id}.json`)
+    fetch(`https://raw.githubusercontent.com/MarieKocabova/superkviz-api/main/quiz/${id}.json`)
       .then((response) => response.json())
       .then((data) => {
         setquestionItems(data.questions);
