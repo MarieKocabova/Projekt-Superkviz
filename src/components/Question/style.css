@@ -29,7 +29,9 @@
 
 .question__content {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  /* grid-template-columns: 300px 1fr; */
+  grid-template-columns: repeat(auto-fit, 20rem);
+  justify-content: center;
   gap: 60px;
   align-items: center;
 }
